@@ -15,4 +15,8 @@ export class LibraryComponent {
     description: new FormControl('')
   })
 
+  onSubmit() {
+    console.warn(this.bookForm.value)
+  }
+
 }
