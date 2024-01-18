@@ -1,18 +1,19 @@
 <p>library page!</p>
 <a routerLink="/home">Go to Home Page</a>
-<form [formGroup]="bookForm">
-
+<form [formGroup]="bookForm" (ngSubmit)="addBook()">
     <label for="title">Title</label>
-    <input id="title" type="text" formControlName="title">
+    <input type="text" formControlName="title" id="title" required>
 
     <label for="author">Author</label>
-    <input id="author" type="text" formControlName="author">
+    <input type="text" formControlName="author" id="author">
 
     <label for="year">Year</label>
-    <input id="year" type="text" formControlName="year">
+    <input type="number" formControlName="year" id="year">
 
     <label for="description">Description</label>
-    <input id="description" type="text" formControlName="description">
-
+    <input type="text" formControlName="description" id="description">
 </form>
-<button type="submit" [disabled]="!bookForm.valid">Submit</button>
+
+<button (click)="addBook()">Add book</button>
+
+<!-- ngsubmit event triggers the add book method when the form is submitted-->
