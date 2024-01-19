@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BookService } from '../book.service';
 import { GuidId } from './guid-id';
@@ -8,7 +8,11 @@ import { GuidId } from './guid-id';
   templateUrl: './library.component.html',
   styleUrl: './library.component.css'
 })
-export class LibraryComponent {
+export class LibraryComponent implements OnInit {
+
+  books: any[] = [];
+  //declares a property of books and initilaising it to an empty array 
+// assumes that the bookservice returns an array of books 
 
   constructor(private bookService: BookService) {}
 
@@ -17,9 +21,20 @@ export class LibraryComponent {
     author: new FormControl(''),
     year: new FormControl(''),
     description: new FormControl('')
-  })
+  });
 
   //form group represents adding the form for adding books 
+
+  ngOnInit(): void {
+    this.getAllBooks();
+  }
+  //getAllBooks methiod is initialised here 
+
+  getAllBooks(): void {
+    this.books = this.bookService.getBooks();
+  }
+  //sets the method getAllBooks here, sets this.books(set at the top earlier)
+  //this.bookService.getBooks(); fetches the list of books from the bookservice and assigns it to the books property
 
   addBook(): void {
     const newBook = { 
