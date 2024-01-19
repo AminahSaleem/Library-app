@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BookService } from '../book.service';
+import { GuidId } from './guid-id';
 
 @Component({
   selector: 'app-library',
@@ -22,6 +23,8 @@ export class LibraryComponent {
 
   addBook(): void {
     const newBook = { 
+      id: new GuidId().id,
+      //adds a guid to each book 
       title: this.bookForm.value.title,
       author: this.bookForm.value.author,
       year: this.bookForm.value.year,
