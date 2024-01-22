@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BookService } from '../book.service';
 import { GuidId } from './guid-id';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-library',
@@ -28,9 +28,10 @@ export class LibraryComponent implements OnInit {
   ngOnInit(): void {
     this.getAllBooks();
   }
-  //getAllBooks methiod is initialised here 
+  //getAllBooks method is initialised here 
 
   getAllBooks(): void {
+    console.log('getting ALL')
     this.books = this.bookService.getBooks();
   }
   //sets the method getAllBooks here, sets this.books(set at the top earlier)
@@ -50,5 +51,7 @@ export class LibraryComponent implements OnInit {
     //passes it to the add book method of book service 
     this.bookForm.reset();
     //resets the form  
+    this.getAllBooks();
+    //call gteallbooks to display the books on the browser straight away 
   }
 }

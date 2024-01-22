@@ -17,6 +17,7 @@ export class BookService {
   }
 
   addBook(book: any): void {
+    console.log('adding book')
     // retrieves the exisiting books from local storage 
     const books = this.getBooks();
     books.push(book);

@@ -12,11 +12,12 @@
 
     <label for="description">Description</label>
     <input type="text" formControlName="description" id="description">
+    <button type="submit">Add Book</button>
 </form>
 <!-- ngsubmit event triggers the add book method when the form is submitted-->
 <div *ngFor="let book of books">
     <h3>{{book.title}}</h3>
-    <p>{{book.author}} - {{book.year}}</p>
+    <p>{{book.author}} ( {{book.year}} )</p>
     <p>{{book.description}}</p>
 </div>
 <!--loops through the books (books is defined as books: any[] = []; in the component)-->
