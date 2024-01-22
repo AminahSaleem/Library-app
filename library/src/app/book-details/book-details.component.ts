@@ -19,8 +19,15 @@ export class BookDetailsComponent implements OnInit {
       const id: string =  params['id']
       //extracts the id parameter from the route parameter and assigns it to the id variable 
         this.book = this.bookService.getBookById(id);
-        //uses the service get book by id function to retrieve cthe coprresponding book 
+        //uses the service get book by id function to retrieve the coprresponding book
     })
+  }
+
+  deleteBook(id: string): void {
+    this.bookService.deleteBookById(id);
+  //deletes book from the local storage 
+    this.book = this.bookService.getBooks()
+    // updates the book list property after the book has been deleted 
   }
  
 }

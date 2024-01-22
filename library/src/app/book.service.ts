@@ -31,4 +31,19 @@ export class BookService {
     return books.find(book => book.id === id);
     // uses the find method to return the first element in the array with the id that matches the book
   }
+
+  deleteBookById(id: string): void {
+    const books = this.getBooks().filter((book: any )=> book.id !== id);
+    //retrieves the current list of books by using the get books method it then filters through the books and removed the specified id from the array
+    localStorage.setItem(this.storageKey, JSON.stringify(books));
+    //updates the local storage with the modified array of books 
+  }
+  // deleteBookById(id: string): void {
+  //   const books = this.getBooks();
+  //   const index = books.findIndex((book: any) => book.id === id);
+  
+  //   if (index !== -1) {
+  //     books.splice(index, 1);
+  //     localStorage.setItem(this.storageKey, JSON.stringify(books));
+  //   }}  ==> another way to write the deletebookbyid 
 }
