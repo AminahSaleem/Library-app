@@ -7,7 +7,8 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 const routes: Routes = [
   {path:'home', component: HomeComponent, title: 'Home'},
   {path: 'library', component: LibraryComponent, title: 'Library'},
-  {path: 'book-details', component: BookDetailsComponent, title: 'Book Details'},
+  {path: 'book-details/:id', component: BookDetailsComponent, title: 'Book Details'},
+  // id is not a part of the url
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 

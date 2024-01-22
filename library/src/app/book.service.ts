@@ -17,12 +17,18 @@ export class BookService {
   }
 
   addBook(book: any): void {
-    console.log('adding book')
     // retrieves the exisiting books from local storage 
     const books = this.getBooks();
     books.push(book);
     // add the new book to the array of exisiting books 
     localStorage.setItem(this.storageKey, JSON.stringify(books));
     //save the updated array of books baclk to local storage 
+  }
+
+  getBookById(id: string): any {
+    const books = this.getBooks();
+    //calls getBooks to get an array of books 
+    return books.find(book => book.id === id);
+    // uses the find method to return the first element in the array with the id that matches the book
   }
 }
