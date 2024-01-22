@@ -26,9 +26,11 @@ export class BookDetailsComponent implements OnInit {
   deleteBook(id: string): void {
     this.bookService.deleteBookById(id);
   //deletes book from the local storage 
+    alert(`"${this.book.title}" has been deleted successfully`);
+    // send an alert for the successfully deleted book by title 
     this.book = this.bookService.getBooks();
     // updates the book list property after the book has been deleted 
-    this.router.navigate(['library'])
+    this.router.navigate(['library']);
   }
  
 }
