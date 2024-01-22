@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../book.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-details',
@@ -11,7 +11,7 @@ export class BookDetailsComponent implements OnInit {
 
   book: any;
   
-  constructor (private bookService: BookService, private route: ActivatedRoute) {}
+  constructor (private bookService: BookService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -26,8 +26,9 @@ export class BookDetailsComponent implements OnInit {
   deleteBook(id: string): void {
     this.bookService.deleteBookById(id);
   //deletes book from the local storage 
-    this.book = this.bookService.getBooks()
+    this.book = this.bookService.getBooks();
     // updates the book list property after the book has been deleted 
+    this.router.navigate(['library'])
   }
  
 }
