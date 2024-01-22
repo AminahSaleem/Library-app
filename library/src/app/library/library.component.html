@@ -18,7 +18,8 @@
 <div *ngFor="let book of books">
     <h3>{{book.title}}</h3>
     <p>{{book.author}} ( {{book.year}} )</p>
-    <p>{{book.description}}</p>
+    <!-- <p>{{book.description}}</p> -->
+    <a routerLink="/book-details">Details</a>
 </div>
 <!--loops through the books (books is defined as books: any[] = []; in the component)-->
 <!--the different tags show how the properties will be displayed on the page -->
