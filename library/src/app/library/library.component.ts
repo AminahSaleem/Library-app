@@ -10,28 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LibraryComponent implements OnInit {
 
+  bookOccurrences: { [key: string]: number } = {};
+
   books: any[] = [];
   //declares a property of books and initilaising it to an empty array 
 // assumes that the bookservice returns an array of books 
 
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService,) {}
 
   bookForm = new FormGroup({
     title: new FormControl(''),
     author: new FormControl(''),
     year: new FormControl(''),
-    description: new FormControl('')
+    description: new FormControl(''),
   });
 
   //form group represents adding the form for adding books 
 
   ngOnInit(): void {
     this.getAllBooks();
+    this.count();
   }
   //getAllBooks method is initialised here 
 
   getAllBooks(): void {
-    console.log('getting ALL')
     this.books = this.bookService.getBooks();
   }
   //sets the method getAllBooks here, sets this.books(set at the top earlier)
@@ -52,6 +54,10 @@ export class LibraryComponent implements OnInit {
     this.bookForm.reset();
     //resets the form  
     this.getAllBooks();
-    //call gteallbooks to display the books on the browser straight away 
+    //call getallbooks to display the books on the browser straight away 
+  }
+  
+  count():void {
+  this.bookOccurrences = this.bookService.countOccurrences();
   }
 }

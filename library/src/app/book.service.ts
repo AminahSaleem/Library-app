@@ -46,4 +46,12 @@ export class BookService {
   //     books.splice(index, 1);
   //     localStorage.setItem(this.storageKey, JSON.stringify(books));
   //   }}  ==> another way to write the deletebookbyid 
+
+  countOccurrences(): {[key: string]: number} {
+    return this.getBooks().reduce((acc, book) => {
+      const key = String(book.title || book.author);
+      acc[key] = (acc[key] || 0) + 1;
+      return acc;
+      }, {});
+  }
 }
