@@ -48,10 +48,16 @@ export class BookService {
   //   }}  ==> another way to write the deletebookbyid 
 
   countOccurrences(): {[key: string]: number} {
+    // the key is a string and values are numbers
     return this.getBooks().reduce((acc, book) => {
-      const key = String(book.title || book.author);
+      // invokes getbooks methodand retrieves an array of books. reduce mthod accumulates values from the array into a i single result
+      const key = book.title && book.author;
+      //sets the key to equal the book title and author
       acc[key] = (acc[key] || 0) + 1;
+      // key is used to access the corresponding property in the accumulator object and initialized to 0, then 1 is added to the current value 
       return acc;
+      // updated accumulator
       }, {});
+      // empty object is the initial value of accumulator 
   }
 }

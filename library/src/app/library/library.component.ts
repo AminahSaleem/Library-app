@@ -1,7 +1,7 @@
 import { FormControl, FormGroup } from '@angular/forms';
 import { BookService } from '../book.service';
 import { GuidId } from './guid-id';
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-library',
@@ -10,13 +10,14 @@ import { Component, NgZone, OnInit } from '@angular/core';
 })
 export class LibraryComponent implements OnInit {
 
-  bookOccurrences: { [key: string]: number } = {};
-
   books: any[] = [];
   //declares a property of books and initilaising it to an empty array 
 // assumes that the bookservice returns an array of books 
+  
+  bookOccurrences: { [key: string]: number } = {};
+  //decalres bookoccurrences property with a key of srting and value of number which is initialised to an empty object
 
-  constructor(private bookService: BookService, private zone: NgZone) {}
+  constructor(private bookService: BookService) {}
 
   bookForm = new FormGroup({
     title: new FormControl(''),
@@ -30,6 +31,7 @@ export class LibraryComponent implements OnInit {
   ngOnInit(): void {
     this.getAllBooks();
     this.count();
+    // responsible for counting the occurences of books and updating the book occurence property
   }
   //getAllBooks method is initialised here 
 
@@ -52,14 +54,15 @@ export class LibraryComponent implements OnInit {
     this.bookService.addBook(newBook);
     //passes it to the add book method of book service 
     this.bookForm.reset();
-    this.count();
     //resets the form  
+    this.count();
+    //calls count here to automatically update the browser
     this.getAllBooks();
     //call getallbooks to display the books on the browser straight away 
   }
   
   count():void {
     this.bookOccurrences = this.bookService.countOccurrences();
- 
+   //  calls countoccurrences method from book service and assigns it to bookoccurences 
   }
 }
