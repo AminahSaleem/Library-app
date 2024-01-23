@@ -8,11 +8,12 @@
     <input type="text" formControlName="author" id="author" required>
 
     <label for="year">Year</label>
-    <input type="number" formControlName="year" id="year">
+    <input type="number" formControlName="year" id="year" required>
 
     <label for="description">Description</label>
-    <input type="text" formControlName="description" id="description">
-    <button type="submit">Add Book</button>
+    <input type="text" formControlName="description" id="description" required>
+    <button type="submit" [disabled]="bookForm.invalid">Add Book</button>
+    <!--if required elements are not filled in the submit button will remain disabled-->
 </form>
 <!-- ngsubmit event triggers the add book method when the form is submitted-->
 <div *ngFor="let book of books">
