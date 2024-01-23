@@ -1,7 +1,7 @@
 import { FormControl, FormGroup } from '@angular/forms';
 import { BookService } from '../book.service';
 import { GuidId } from './guid-id';
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-library',
@@ -16,7 +16,7 @@ export class LibraryComponent implements OnInit {
   //declares a property of books and initilaising it to an empty array 
 // assumes that the bookservice returns an array of books 
 
-  constructor(private bookService: BookService,) {}
+  constructor(private bookService: BookService, private zone: NgZone) {}
 
   bookForm = new FormGroup({
     title: new FormControl(''),
@@ -52,12 +52,14 @@ export class LibraryComponent implements OnInit {
     this.bookService.addBook(newBook);
     //passes it to the add book method of book service 
     this.bookForm.reset();
+    this.count();
     //resets the form  
     this.getAllBooks();
     //call getallbooks to display the books on the browser straight away 
   }
   
   count():void {
-  this.bookOccurrences = this.bookService.countOccurrences();
+    this.bookOccurrences = this.bookService.countOccurrences();
+ 
   }
 }
