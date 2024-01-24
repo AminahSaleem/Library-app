@@ -50,7 +50,7 @@ export class BookService {
   countOccurrences(): {[key: string]: number} {
     // the key is a string and values are numbers
     return this.getBooks().reduce((acc, book) => {
-      // invokes getbooks methodand retrieves an array of books. reduce mthod accumulates values from the array into a i single result
+      // invokes getbooks method and retrieves an array of books. reduce method accumulates values from the array into a single result
       const key = book.title && book.author;
       //sets the key to equal the book title and author
       acc[key] = (acc[key] || 0) + 1;
@@ -59,5 +59,19 @@ export class BookService {
       // updated accumulator
       }, {});
       // empty object is the initial value of accumulator 
+  }
+
+  updateBook(updatedBook: any): void {
+    const books =this.getBooks();
+    //calls the getbook method
+    const index = books.findIndex(book => book.id === updatedBook.id);
+    //findIndex method locates the book that matches the id of the updated book
+    if (index !== -1) {
+      //if index is not euqal to -1 then n id has matched in the array
+      books[index] = updatedBook;
+      //replaces the book at the found index with the updated book
+      localStorage.setItem(this.storageKey, JSON.stringify(books));
+      // updates locals storage with the modified array of books 
+    }
   }
 }

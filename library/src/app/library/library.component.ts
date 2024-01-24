@@ -1,4 +1,4 @@
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BookService } from '../book.service';
 import { GuidId } from './guid-id';
 import { Component, OnInit } from '@angular/core';
@@ -15,15 +15,15 @@ export class LibraryComponent implements OnInit {
 // assumes that the bookservice returns an array of books 
   
   bookOccurrences: { [key: string]: number } = {};
-  //decalres bookoccurrences property with a key of srting and value of number which is initialised to an empty object
+  //decalres bookoccurrences property with a key of string and value of number which is initialised to an empty object
 
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService, private formBuilder: FormBuilder) {}
 
   bookForm = new FormGroup({
-    title: new FormControl(''),
-    author: new FormControl(''),
-    year: new FormControl(''),
-    description: new FormControl(''),
+    title: new FormControl('', Validators.required),
+    author: new FormControl('', Validators.required),
+    year: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
   });
 
   //form group represents adding the form for adding books 
@@ -65,4 +65,5 @@ export class LibraryComponent implements OnInit {
     this.bookOccurrences = this.bookService.countOccurrences();
    //  calls countoccurrences method from book service and assigns it to bookoccurences 
   }
+
 }
