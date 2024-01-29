@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { LibraryComponent } from './library/library.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookDetailsComponent } from './book-details/book-details.component';
+import { FormComponent } from './form/form.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
     HomeComponent,
     LibraryComponent,
     BookDetailsComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,

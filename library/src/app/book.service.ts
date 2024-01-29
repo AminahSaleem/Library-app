@@ -62,7 +62,7 @@ export class BookService {
   }
 
   updateBook(updatedBook: any): void {
-    const books =this.getBooks();
+    const books = this.getBooks();
     //calls the getbook method
     const index = books.findIndex(book => book.id === updatedBook.id);
     //findIndex method locates the book that matches the id of the updated book
