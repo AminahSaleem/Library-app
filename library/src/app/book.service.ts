@@ -22,7 +22,7 @@ export class BookService {
     books.push(book);
     // add the new book to the array of exisiting books 
     localStorage.setItem(this.storageKey, JSON.stringify(books));
-    //save the updated array of books baclk to local storage 
+    //save the updated array of books back to local storage 
   }
 
   getBookById(id: string): any {
@@ -48,17 +48,17 @@ export class BookService {
   //   }}  ==> another way to write the deletebookbyid 
 
   countOccurrences(): {[key: string]: number} {
-    // the key is a string and values are numbers
-    return this.getBooks().reduce((acc, book) => {
-      // invokes getbooks method and retrieves an array of books. reduce method accumulates values from the array into a single result
-      const key = book.title && book.author;
-      //sets the key to equal the book title and author
+    const acc: { [key: string]: number } = {};
+    // the key is a string and sets the value as a number 
+     this.getBooks().forEach((book) => {
+      //iterates through each book using getbook method
+      const key = book.title + book.author;
+      //creates a key by concatenating thr title and author
       acc[key] = (acc[key] || 0) + 1;
-      // key is used to access the corresponding property in the accumulator object and initialized to 0, then 1 is added to the current value 
+     // uses the key to access the correspronding property in the accumulator object if it exists use current value and add 1 if not then use 0 (thus getting 1)
+      });
       return acc;
-      // updated accumulator
-      }, {});
-      // empty object is the initial value of accumulator 
+      //returns final accumulator object 
   }
 
   updateBook(updatedBook: any): void {

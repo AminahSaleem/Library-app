@@ -23,8 +23,9 @@ export class FormComponent implements OnInit {
   @Input() editMode: boolean = false;
   @Input() book: any;
   @Input() formButtonText = '';
+  updatedBook: any;
 
-  constructor(private bookService: BookService, private route: ActivatedRoute) {}
+  constructor(private bookService: BookService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     
@@ -43,9 +44,10 @@ export class FormComponent implements OnInit {
           this.editMode = false;
         }
        this.formButtonText = this.id === undefined ? 'Create book' : 'Submit';
+       // toggles between the create and submit button depending if an id is present 
     })
-    
   }
+
   
   bookForm = new FormGroup({
     id: new FormControl(''),
@@ -65,18 +67,21 @@ export class FormComponent implements OnInit {
       description: this.book.description,
     });
     this.bookForm.markAllAsTouched();
+    //marks the form field as touched 
     }
   
   }
-
   //form group represents adding the form for adding books 
+
 submittedForm(){
-  this.addBook();
-  // if(this.id===undefined) {
-  //   this.addBook();
-  // } else {
-  //   this.onSubmit();
-  // }
+  if(this.id===undefined){
+    this.addBook();
+  } else if (this.id!==undefined) {
+    this.bookService.updateBook(this.updatedBook);
+    this.onSubmit();
+  }
+  // if there is no id, add a book and if there is an id edit the book
+
 }
   addBook(): void {
     const newBook = { 
@@ -92,6 +97,8 @@ submittedForm(){
     //passes it to the add book method of book service 
     this.bookForm.reset();
     //resets the form  
+    window.location.reload()
+    //automatically refreshes the page
     this.countMethod();
     //calls count here to automatically update the browser
     this.getAllBooksMethod();
@@ -113,12 +120,13 @@ submittedForm(){
       // extracts the current value from the form and assigns it to edited book
       this.bookService.updateBook(editedBook);
       //invokes service and the editedbook object is passed to this method to carry out the update
-      alert(`"${editedBook.title} has been updated successfully`);
+      alert(`"${editedBook.title}" has been updated successfully`);
       this.book = editedBook;
       //sets book to edited book
       this.editMode = false;
       //turns edit mode false once the book has been edited 
-      // this.router.navigate(['library']);
+      this.router.navigate(['library']);
+      // naviagtes us back to the library page after editing book
     }
   }
 }

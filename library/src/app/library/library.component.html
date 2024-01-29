@@ -8,8 +8,8 @@
 <div *ngFor="let book of books">
     <h3>{{book.title}}</h3>
     <p>{{book.author}} ( {{book.year}} )</p>
-    <p>Inventory Count: {{ bookOccurrences[book.title && book.author] || 0 }}</p>
-    <!--uses interpolation and checks if the title and author are truthy values, sets a default value of 0 if combination is not found-->
+    <p>Inventory Count: {{ bookOccurrences[book.title + book.author] || 0 }}</p>
+    <!--uses interpolation and checks if concatenation of the author and title -->
     <a [routerLink]="['/book-details', book.id]">Details</a>
     <!-- creates a router link which goes to the book details page followed by the book.id -->
 </div>

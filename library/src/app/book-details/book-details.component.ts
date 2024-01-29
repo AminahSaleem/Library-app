@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BookService } from '../book.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {  FormGroup } from '@angular/forms';
@@ -19,6 +19,7 @@ export class BookDetailsComponent implements OnInit {
   editMode: boolean = false;
   //sets editmode to be false
 
+
   constructor (private bookService: BookService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
@@ -29,24 +30,11 @@ export class BookDetailsComponent implements OnInit {
     //   //extracts the id parameter from the route parameter and assigns it to the id variable 
         this.book = this.bookService.getBookById(id);
         //uses the service get book by id function to retrieve the coprresponding book
-        // this.newForm()
-    //     // calls the newform here
-    })
 
+         
+    })
   }
 
-  // newForm() {
-  //   this.bookForm = new FormGroup({
-  //     id: new FormControl(this.book.id),
-  //     title: new FormControl(this.book.title, Validators.required),
-  //     author: new FormControl(this.book.author, Validators.required),
-  //     year: new FormControl(this.book.year, Validators.required),
-  //     description: new FormControl(this.book.description, Validators.required),
-  //   });
-  // }
-  //calls the bookform property from above and sets it to a new form group (similar to library component)
-  // by doign this.book.title I am setting the initial value to this 
-  //validators required ensures that the field is required and must not be empty
 
   deleteBook(id: string): void {
     if(this.book){
@@ -60,26 +48,6 @@ export class BookDetailsComponent implements OnInit {
   }
     }
     
-   
-//   toggleEdit() {
-//     this.editMode = !this.editMode;
-//   }
-// //toggles between true and false so that  the fields can become editable
-
-//   onSubmit(): void {
-//     if(this.editMode){
-//       //if edit mode is true 
-//       const editedBook = this.bookForm.value;
-//       // extracts the current value from the form and assigns it to edited book
-//       this.bookService.updateBook(editedBook);
-//       //invokes service and the editedbook object is passed to this method to carry out the update
-//       alert(`"${editedBook.title} has been updated successfully`);
-//       this.book = editedBook;
-//       //sets book to edited book
-//       this.editMode = false;
-//       //turns edit mode false once the book has been edited 
-//       // this.router.navigate(['library']);
-//     }
-//   }
+  
  
 }
