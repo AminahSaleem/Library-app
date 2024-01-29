@@ -1,28 +1,16 @@
 <p>library page!</p>
 <a routerLink="/home">Go to Home Page</a>
-<form [formGroup]="bookForm" (ngSubmit)="addBook()">
-    <label for="title">Title</label>
-    <input type="text" formControlName="title" id="title" required>
-
-    <label for="author">Author</label>
-    <input type="text" formControlName="author" id="author" required>
-
-    <label for="year">Year</label>
-    <input type="number" formControlName="year" id="year" required>
-
-    <label for="description">Description</label>
-    <input type="text" formControlName="description" id="description" required>
-    <button type="submit" [disabled]="bookForm.invalid">Add Book</button>
-    <!--if required elements are not filled in the submit button will remain disabled-->
-</form>
-<!-- ngsubmit event triggers the add book method when the form is submitted-->
+<app-form 
+[countMethod]="count" 
+[getAllBooksMethod]="getAllBooks"
+[books]="books" 
+[bookOccurrences]="bookOccurrences" ></app-form>
 <div *ngFor="let book of books">
     <h3>{{book.title}}</h3>
     <p>{{book.author}} ( {{book.year}} )</p>
-    <p>Inventory Count: {{ bookOccurrences[book.title && book.author] || 0 }}</p>
-    <!--uses interpolation and checks if the title and author are truthy values, sets a default value of 0 if combination is not found-->
+    <p>Inventory Count: {{ bookOccurrences[book.title + book.author] || 0 }}</p>
+    <!--uses interpolation and checks if concatenation of the author and title -->
     <a [routerLink]="['/book-details', book.id]">Details</a>
     <!-- creates a router link which goes to the book details page followed by the book.id -->
 </div>
-<!--loops through the books (books is defined as books: any[] = []; in the component)-->
-<!--the different tags show how the properties will be displayed on the page -->
+<!-- refers to the selector from child (form component), passes the count and getAllBooks by giving it a name that will be used as the @Input in the form component-->

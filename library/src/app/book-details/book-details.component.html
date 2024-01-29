@@ -1,25 +1,3 @@
 <p>Book details</p>
-
-<form [formGroup]="this.bookForm">
-    <label for="title">Title: </label>
-    <input *ngIf="editMode" type="text" formControlName="title" id="title" required>
-    <label *ngIf="id!==undefined && !editMode">{{book.title}} </label><br><br>
-
-    <label for="author">Author: </label>
-    <input *ngIf="id===undefined" type="text" formControlName="author" id="author" required>
-    <label *ngIf="id!==undefined">{{book.author}} </label><br>
-
-    <label for="year">Year: </label>
-    <input *ngIf="id===undefined" type="number" formControlName="year" id="year" required>
-    <label *ngIf="id!==undefined">{{book.year}} </label><br>
-
-    <label for="description">Description: </label>
-    <input *ngIf="editMode" type="text" formControlName="description" id="description" required>
-    <label *ngIf="id!==undefined && !editMode">{{book.description}} </label><br>
-
-    <button *ngIf="editMode" (click)="onSubmit()">Submit</button>
-    <button *ngIf="!editMode" (click)="toggleEdit()">Edit</button><br>
+<app-form [id]="id" [editMode]="editMode" [book]="book"></app-form>
     <button (click)="deleteBook(book.id)">Delete</button><br>
-</form>
-
-<!-- use *ngIf to toggle between the edit and submit button to make updates, ngIf for id has also been created for when the forms are separated to its own components so that I can reference the id to toggle betweent them--><!--similar to library component html except there is an extra label for each property for the toggle (e.g. if its not the forst line when toggled the other would execute)-->
