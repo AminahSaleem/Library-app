@@ -19,6 +19,7 @@ export class BookDetailsComponent implements OnInit {
   editMode: boolean = false;
   //sets editmode to be false
 
+  availability: boolean = true;
 
   constructor (private bookService: BookService, private route: ActivatedRoute, private router: Router) {}
 
@@ -29,9 +30,8 @@ export class BookDetailsComponent implements OnInit {
       const id: string =  params['id']
     //   //extracts the id parameter from the route parameter and assigns it to the id variable 
         this.book = this.bookService.getBookById(id);
-        //uses the service get book by id function to retrieve the coprresponding book
-
-         
+        //uses the service get book by id function to retrieve the corresponding book
+        // this.book = this.bookService.getBooks().map(book => ({...book, loaned: false}));
     })
   }
 
@@ -48,6 +48,12 @@ export class BookDetailsComponent implements OnInit {
   }
     }
     
-  
+    loanBook(): void{
+      this.availability = false;
+     }
+ 
+     returnBook(): void{
+      this.availability = true;
+     }
  
 }

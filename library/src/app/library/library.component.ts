@@ -17,18 +17,18 @@ export class LibraryComponent {
 
   public filterTerm: string;
   //sets public property filterTerm with type string
+  availability: boolean = true
 
   constructor(private bookService: BookService) {
     this.filterTerm = '';
     //initilaizes filterTerm with an empty string
+    this.books = this.bookService.getBooks();
   }
 
   ngOnInit(): void {
     this.getAllBooks();
     this.count();
   }
-  
-
 
   getAllBooks(): void {
     this.books = this.bookService.getBooks();
@@ -40,4 +40,5 @@ export class LibraryComponent {
     this.bookOccurrences = this.bookService.countOccurrences();
    //  calls countoccurrences method from book service and assigns it to bookoccurences 
   }
+
 }

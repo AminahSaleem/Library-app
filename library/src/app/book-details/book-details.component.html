@@ -1,3 +1,8 @@
 <p>Book details</p>
 <app-form [id]="id" [editMode]="editMode" [book]="book"></app-form>
-    <button (click)="deleteBook(book.id)">Delete</button><br>
+<button (click)="deleteBook(book.id)">Delete</button><br>
+<button *ngIf="availability"(click)="loanBook()">Loan Book</button>
+<button *ngIf="!availability" (click)="returnBook()">Return Book</button>
+<p>Availability: {{this.availability}}</p>
+
+
