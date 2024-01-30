@@ -15,7 +15,14 @@ export class LibraryComponent {
   bookOccurrences: { [key: string]: number } = {};
   //declares bookoccurrences property with a key of string and value of number which is initialised to an empty object
 
-  constructor(private bookService: BookService) {}
+  public filterTerm: string;
+  //sets public property filterTerm with type string
+
+  constructor(private bookService: BookService) {
+    this.filterTerm = '';
+    //initilaizes filterTerm with an empty string
+  }
+
   ngOnInit(): void {
     this.getAllBooks();
     this.count();
@@ -33,5 +40,4 @@ export class LibraryComponent {
     this.bookOccurrences = this.bookService.countOccurrences();
    //  calls countoccurrences method from book service and assigns it to bookoccurences 
   }
-
 }

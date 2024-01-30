@@ -1,11 +1,16 @@
 <p>library page!</p>
 <a routerLink="/home">Go to Home Page</a>
+<form>
+    <input type="text" placeholder="Filter by title" name="search" [(ngModel)]="filterTerm" autocomplete="on">
+</form>
+<!--to use ngModel you have to wrap around form tags. NgModel does two way binding to the input field of the filterTerm -->
 <app-form 
 [countMethod]="count" 
 [getAllBooksMethod]="getAllBooks"
 [books]="books" 
 [bookOccurrences]="bookOccurrences" ></app-form>
-<div *ngFor="let book of books">
+<div *ngFor="let book of books | filter: 'title': filterTerm">
+    <!--filter: 'title, author': filterTerm uses filter pipe to dynamically filter a list of books depending based on the title. filterTerm is the value entered by the user in the input field and is bound to filterTerm(above in NgModel)-->
     <h3>{{book.title}}</h3>
     <p>{{book.author}} ( {{book.year}} )</p>
     <p>Inventory Count: {{ bookOccurrences[book.title + book.author] || 0 }}</p>

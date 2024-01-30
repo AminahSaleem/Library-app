@@ -8,6 +8,7 @@ import { LibraryComponent } from './library/library.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { FormComponent } from './form/form.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -16,12 +17,13 @@ import { FormComponent } from './form/form.component';
     LibraryComponent,
     BookDetailsComponent,
     FormComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

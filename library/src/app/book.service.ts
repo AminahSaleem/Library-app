@@ -74,4 +74,5 @@ export class BookService {
       // updates locals storage with the modified array of books 
     }
   }
+
 }
