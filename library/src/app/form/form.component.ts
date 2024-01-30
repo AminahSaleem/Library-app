@@ -91,6 +91,8 @@ submittedForm(){
       author: this.bookForm.value.author,
       year: this.bookForm.value.year,
       description: this.bookForm.value.description,
+      availability: true
+      // adds the availbility into the form so it is uodated with each book
     };
     //new book created from the form values
     this.bookService.addBook(newBook);

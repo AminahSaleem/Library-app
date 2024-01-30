@@ -1,8 +1,9 @@
 <p>Book details</p>
 <app-form [id]="id" [editMode]="editMode" [book]="book"></app-form>
 <button (click)="deleteBook(book.id)">Delete</button><br>
-<button *ngIf="availability"(click)="loanBook()">Loan Book</button>
-<button *ngIf="!availability" (click)="returnBook()">Return Book</button>
-<p>Availability: {{this.availability}}</p>
+<button *ngIf="book.availability"(click)="loanBook()">Loan Book</button>
+<button *ngIf="!book.availability" (click)="returnBook()">Return Book</button>
+<p>Availability: {{book.availability}}</p>
+<!--depending on the availability the loan book and returned book button is shown incoludig the true or false state-->
 
 

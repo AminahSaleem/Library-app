@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookService } from '../book.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {  FormGroup } from '@angular/forms';
@@ -18,8 +18,6 @@ export class BookDetailsComponent implements OnInit {
   //  to use this when creating form component 
   editMode: boolean = false;
   //sets editmode to be false
-
-  availability: boolean = true;
 
   constructor (private bookService: BookService, private route: ActivatedRoute, private router: Router) {}
 
@@ -48,12 +46,17 @@ export class BookDetailsComponent implements OnInit {
   }
     }
     
-    loanBook(): void{
-      this.availability = false;
+    loanBook(): void{     
+      this.book.availability = false;
+      this.bookService.updateBook(this.book);
+      // sets book availabiltiy to false and then updates book
      }
  
      returnBook(): void{
-      this.availability = true;
+      this.book.availability = true;
+      this.bookService.updateBook(this.book);
+      // sets book availabiltiy to true and then updates book
+
      }
  
 }
