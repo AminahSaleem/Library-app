@@ -1,0 +1,53 @@
+.form-appearance {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: left;
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: black;
+    font-size: 16px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between; 
+  }
+  
+  button {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .button-container button {
+    background-color: green;
+    color: white;
+  }
+  
+  .button-container button:hover {
+    background-color: black;
+  }
+  
+  br {
+    margin-bottom: 10px;
+  }
+  
+  .form-value {
+    font-weight: bold;
+    font-size: 20px;
+  }

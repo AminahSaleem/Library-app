@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { FormComponent } from './form/form.component';
 import { FilterPipe } from './filter.pipe';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FilterPipe } from './filter.pipe';
     BookDetailsComponent,
     FormComponent,
     FilterPipe,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,

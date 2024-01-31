@@ -1,4 +1,4 @@
-<p>Book details</p>
+<p class="centered-text">Book details</p>
 <app-form [id]="id" [editMode]="editMode" [book]="book"></app-form>
 <button (click)="deleteBook(book.id)">Delete</button><br>
 <button *ngIf="book.availability"(click)="loanBook()">Loan Book</button>

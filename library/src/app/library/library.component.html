@@ -1,7 +1,6 @@
-<p>library page!</p>
-<a routerLink="/home">Go to Home Page</a>
-<form>
-    <input type="text" placeholder="Filter by title" name="search" [(ngModel)]="filterTerm" autocomplete="on">
+<p class="centered-text">Library</p>
+<form class="center-container">
+    <input class="filter" type="text" placeholder="Filter by title" name="search" [(ngModel)]="filterTerm" autocomplete="on">
 </form>
 <!--to use ngModel you have to wrap around form tags. NgModel does two way binding to the input field of the filterTerm -->
 <app-form 

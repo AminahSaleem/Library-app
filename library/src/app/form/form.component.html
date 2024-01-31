@@ -1,25 +1,28 @@
-<form [formGroup]="bookForm" (ngSubmit)="submittedForm()">
-    <label for="title">Title: </label>
-    <input *ngIf="editMode" type="text" formControlName="title" id="title" required>
+<form [formGroup]="bookForm" (ngSubmit)="submittedForm()" class="form-appearance" >
+    <label class="form-value" for="title">Title: </label>
+    <input *ngIf="editMode" type="text"  formControlName="title" id="title" required>
     <label *ngIf="!editMode">{{book.title}} </label><br><br>
 
-    <label for="author">Author: </label>
+    <label for="author" class="form-value">Author: </label>
     <input *ngIf="editMode && id===undefined" type="text" formControlName="author" id="author" required>
     <label *ngIf="!editMode || id!==undefined">{{book.author}} </label><br><br>
 
-    <label for="year">Year: </label>
+    <label class="form-value" for="year">Year: </label>
     <input *ngIf="editMode && id===undefined" type="text" formControlName="year" id="year" required>
     <label *ngIf="!editMode || id!==undefined">{{book.year}} </label><br><br>
 
-    <label for="description">Description: </label>
+    <label class="form-value" for="description">Description: </label>
     <input *ngIf="editMode" type="text" formControlName="description" id="description" required>
     <label *ngIf="!editMode">{{book.description}} </label><br><br>
-
-    <button type="submit" *ngIf="id === undefined"[disabled]="bookForm.invalid" (click)="addBook()">{{formButtonText}}</button>
-    <button type="submit" *ngIf="id !== undefined"[disabled]="bookForm.invalid" (click)="onSubmit()">{{formButtonText}}</button>
+    <div class="button-container">
+        <button *ngIf="id!==undefined" (click)="toggleEdit()">Edit</button><br>
+         <button type="submit" *ngIf="id === undefined"[disabled]="bookForm.invalid" (click)="addBook()">{{formButtonText}}</button>
+        <button type="submit" *ngIf="id !== undefined"[disabled]="bookForm.invalid" (click)="onSubmit()">{{formButtonText}}</button>
     <!--depending on id, either addbook or onsubit button should show -->
+    </div>
+   
 
 </form>    
-<button *ngIf="id!==undefined" (click)="toggleEdit()">Edit</button><br>
+<!-- <button *ngIf="id!==undefined" (click)="toggleEdit()">Edit</button><br> -->
 
 <!-- ngsubmit event triggers the add book method when the form is submitted, depending on the id and edit mode field should be editable or not-->
