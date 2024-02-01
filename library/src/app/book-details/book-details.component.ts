@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BookService } from '../book.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {  FormGroup } from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-book-details',
@@ -12,6 +13,7 @@ export class BookDetailsComponent implements OnInit {
 
   book: any;
   bookForm!: FormGroup;
+  users: any[] = []
 
 //sets property of bookform and it holds an instance of form group
   id = '';
@@ -19,7 +21,7 @@ export class BookDetailsComponent implements OnInit {
   editMode: boolean = false;
   //sets editmode to be false
 
-  constructor (private bookService: BookService, private route: ActivatedRoute, private router: Router) {}
+  constructor (private bookService: BookService, private route: ActivatedRoute, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
     
@@ -30,15 +32,11 @@ export class BookDetailsComponent implements OnInit {
         this.book = this.bookService.getBookById(id);
         //uses the service get book by id function to retrieve the corresponding book
         // this.book = this.bookService.getBooks().map(book => ({...book, loaned: false}));
-        if(!this.book) {
-          console.error(`Book with id ${id} not found`);
-          this.router.navigate(['library']);
-        }
     })
   }
 
 
-  deleteBook(id: string): void {
+  deleteBook(id: string): any {
     if(this.book){
        this.bookService.deleteBookById(id);
   //deletes book from the local storage 
@@ -50,9 +48,9 @@ export class BookDetailsComponent implements OnInit {
   }
     }
     
-    loanBook(): void{     
-      this.book.availability = false;
-      this.bookService.updateBook(this.book);
+    loanBook(): void{  
+          this.book.availability = false;
+          this.bookService.updateBook(this.book);
       // sets book availabiltiy to false and then updates book
      }
  

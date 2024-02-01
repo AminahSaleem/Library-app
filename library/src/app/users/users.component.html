@@ -16,10 +16,15 @@
     <select id="userDropdown" formControlName="id">
      <option *ngFor="let user of users" [value]="user.id">{{ user.firstName }} {{ user.lastName }}</option>
     </select>
-    <div *ngFor="let user of users">
+    <!-- <div *ngFor="let user of users">
         <p>Title: {{user.title}}</p>
         <p>First Name: {{user.firstName}}</p>
         <p>Surname: {{user.lastName}}</p>
+    </div> -->
+    <p>Books</p>
+    <div *ngFor="let book of books">
+        <p>{{book.title}}, {{book.author}}</p>
+        <button>Loan Book</button>
     </div>
 </form>
 

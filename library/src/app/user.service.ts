@@ -18,4 +18,9 @@ export class UserService {
     users.push(user)
     localStorage.setItem(this.userKey, JSON.stringify(users));
   }
+
+  getUserById(id: string): void {
+    const users = this.getUsers();
+    return users.find(user => user.id === id);
+  }
 }

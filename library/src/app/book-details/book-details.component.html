@@ -5,5 +5,7 @@
 <button *ngIf="!book.availability" (click)="returnBook()">Return Book</button>
 <p>Availability: {{book?.availability}}</p>
 <!--depending on the availability the loan book and returned book button is shown incoludig the true or false state-->
-
-
+<label for="userDropdown">Select User:</label>
+<select id="userDropdown" formControlName="id">
+ <option *ngFor="let user of users" [value]="user.id">{{ user.firstName }} {{ user.lastName }}</option>
+</select>

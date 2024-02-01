@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { GuidId } from '../library/guid-id';
 import { User } from '../user';
+import { BookService } from '../book.service';
 
 @Component({
   selector: 'app-users',
@@ -11,15 +12,16 @@ import { User } from '../user';
 })
 
 export class UsersComponent {
-  // userForm: FormControl;
   users: User[] = [];
+  books: any
 
   ngOnInit(): void {
     this.userForm;
     this.getAllUsers();
+    this.getAllBooks();
   }
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private bookService: BookService) {}
   
 
   userForm = new FormGroup({
@@ -43,5 +45,9 @@ export class UsersComponent {
 
   getAllUsers(): void {
     this.users = this.userService.getUsers();
+  }
+
+  getAllBooks(): void {
+    this.books = this.bookService.getBooks()
   }
 }
