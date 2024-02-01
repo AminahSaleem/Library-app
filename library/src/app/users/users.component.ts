@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { GuidId } from '../library/guid-id';
+import { User } from '../user';
 
 @Component({
   selector: 'app-users',
@@ -11,10 +12,11 @@ import { GuidId } from '../library/guid-id';
 
 export class UsersComponent {
   // userForm: FormControl;
+  users: User[] = [];
 
   ngOnInit(): void {
     this.userForm;
-    this.addUser();
+    this.getAllUsers();
   }
 
   constructor(private userService: UserService) {}
@@ -28,14 +30,18 @@ export class UsersComponent {
   });
 
   addUser(): void {
-    const newUser= {
+    const newUser: User = {
       id: new GuidId().id,
-      title: this.userForm.value.title,
-      firstName: this.userForm.value.firstName,
-      lastName: this.userForm.value.lastName, 
+      title: this.userForm.value.title || '',
+      firstName: this.userForm.value.firstName || '',
+      lastName: this.userForm.value.lastName || '', 
     }
-    const user = this.userForm.value;
     this.userService.addUser(newUser);
     this.userForm.reset();
+    window.location.reload();
+  }
+
+  getAllUsers(): void {
+    this.users = this.userService.getUsers();
   }
 }

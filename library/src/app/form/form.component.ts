@@ -99,7 +99,7 @@ submittedForm(){
     //passes it to the add book method of book service 
     this.bookForm.reset();
     //resets the form  
-    window.location.reload()
+    window.location.reload();
     //automatically refreshes the page
     this.countMethod();
     //calls count here to automatically update the browser
