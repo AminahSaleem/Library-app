@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormComponent } from './form.component';
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { BookService } from '../book.service';
 
 describe('FormComponent', () => {
   let component: FormComponent;
@@ -8,7 +10,17 @@ describe('FormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FormComponent]
+      declarations: [FormComponent],
+      providers: [
+        BookService,
+      {
+        provide: ActivatedRoute,
+        useValue: {
+          snapshot: {
+            paramMap: convertToParamMap({id: '123'})
+          }
+        }
+      }]
     })
     .compileComponents();
     

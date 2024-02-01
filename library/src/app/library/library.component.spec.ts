@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LibraryComponent } from './library.component';
+import { FormComponent } from '../form/form.component';
+import { ActivatedRoute } from '@angular/router';
+import { FilterPipe } from '../filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 describe('LibraryComponent', () => {
   let component: LibraryComponent;
@@ -8,7 +12,19 @@ describe('LibraryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LibraryComponent]
+      declarations: [LibraryComponent, FormComponent, FilterPipe],
+      providers: [{   provide: ActivatedRoute,
+        useValue: {
+            snapshot: {
+                paramMap: {
+                    get(): string {
+                        return '123';
+                    },
+                },
+            },
+        },
+    }],
+    imports: [FormsModule]
     })
     .compileComponents();
     

@@ -30,6 +30,10 @@ export class BookDetailsComponent implements OnInit {
         this.book = this.bookService.getBookById(id);
         //uses the service get book by id function to retrieve the corresponding book
         // this.book = this.bookService.getBooks().map(book => ({...book, loaned: false}));
+        if(!this.book) {
+          console.error(`Book with id ${id} not found`);
+          this.router.navigate(['library']);
+        }
     })
   }
 
