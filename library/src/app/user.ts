@@ -1,6 +1,6 @@
 export interface User {
-    guid: string;
+    id: string;
     title: string;
     firstName: string;
-    lastName: string
+    lastName: string;
 }

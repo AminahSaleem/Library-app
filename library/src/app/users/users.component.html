@@ -1,1 +1,14 @@
 <p>users works!</p>
+<form [formGroup]="userForm" (ngSubmit)="addUser()">
+    <label for="title">Title: </label>
+    <input id="title" type="text" formControlName="title">
+
+    <label for="firstName">First Name: </label>
+    <input id="firstName" type="text" formControlName="firstName">
+
+    <label for="lastName">Last Name: </label>
+    <input id="lastName" type="text" formControlName="lastName">
+
+    <button type="submit">Submit</button>
+
+</form>
