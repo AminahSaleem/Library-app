@@ -75,17 +75,16 @@ export class UsersComponent {
   }
 
   loanBook(book: any): void {
-    if(this.selectedUser){
-      if(book.availability){
+    if(this.selectedUser && book.availability){
         book.availability = false;
         this.bookService.updateBook(book);
         this.selectedUser.borrowBooks = this.selectedUser.borrowBooks || [];
         this.selectedUser.borrowBooks.push(book.id);
         this.userService.updateUser(this.selectedUser);
         this.loanedBook = book;
-      }else {
+      } else {
         alert('The book is already on loan')
-      }
+      
      
     }
   }
@@ -93,11 +92,13 @@ export class UsersComponent {
   returnBook(book: any): void {
     book.availability = true;
     this.bookService.updateBook(book);
-    // user.borrowBooks = user.borrowBooks || [];
-    this.selectedUser!.borrowBooks = this.selectedUser!.borrowBooks.filter(bookId => bookId !== book.id);
-    this.userService.updateUser(this.selectedUser!);
+    if (this.selectedUser) {
+      this.selectedUser.borrowBooks = this.selectedUser.borrowBooks.filter(bookId => bookId !== book.id);
+      this.userService.updateUser(this.selectedUser);
+    }
     this.loanedBook.delete(book.id);
   }
+
   isBookLoaned(book: any): boolean {
     return !!this.selectedUser && this.selectedUser.borrowBooks.includes(book.id);;
   }
