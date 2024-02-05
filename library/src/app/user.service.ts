@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,18 @@ export class UserService {
     localStorage.setItem(this.userKey, JSON.stringify(users));
   }
 
-  getUserById(id: string): void {
+  getUserById(id: string): User | undefined {
     const users = this.getUsers();
     return users.find(user => user.id === id);
   }
+
+  updateUser(updatedUser: User): void {
+    const users = this.getUsers();
+    const index = users.findIndex(user => user.id === updatedUser.id);
+    if (index !== -1){
+    users[index]= updatedUser;
+    localStorage.setItem(this.userKey, JSON.stringify(users))
+    }
+  }
 }
+

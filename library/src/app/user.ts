@@ -3,4 +3,5 @@ export interface User {
     title?: string;
     firstName?: string;
     lastName?: string;
+    borrowBooks: string[];
 }

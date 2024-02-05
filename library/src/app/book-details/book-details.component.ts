@@ -48,17 +48,17 @@ export class BookDetailsComponent implements OnInit {
   }
     }
     
-    loanBook(): void{  
-          this.book.availability = false;
-          this.bookService.updateBook(this.book);
-      // sets book availabiltiy to false and then updates book
-     }
+    // loanBook(): void{  
+    //       this.book.availability = false;
+    //       this.bookService.updateBook(this.book);
+    //   // sets book availabiltiy to false and then updates book
+    //  }
  
-     returnBook(): void{
-      this.book.availability = true;
-      this.bookService.updateBook(this.book);
-      // sets book availabiltiy to true and then updates book
+    //  returnBook(): void{
+    //   this.book.availability = true;
+    //   this.bookService.updateBook(this.book);
+    //   // sets book availabiltiy to true and then updates book
 
-     }
+    //  }
  
 }

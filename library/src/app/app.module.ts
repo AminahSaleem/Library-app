@@ -11,6 +11,7 @@ import { FormComponent } from './form/form.component';
 import { FilterPipe } from './filter.pipe';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { UsersComponent } from './users/users.component';
+import { LoanComponent } from './loan/loan.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { UsersComponent } from './users/users.component';
     FilterPipe,
     NavBarComponent,
     UsersComponent,
+    LoanComponent,
   ],
   imports: [
     BrowserModule,

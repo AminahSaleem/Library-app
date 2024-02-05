@@ -1,0 +1,16 @@
+<div>
+<label for="userDropdown">Select User:</label>
+<select id="userDropdown" [(ngModel)]="userId">
+ <option *ngFor="let user of users" [value]="user.id">{{ user.firstName }} {{ user.lastName }}</option>
+</select>
+</div>
+
+<div *ngIf="book">
+    <h2>Book Details</h2>
+    <p>Title: {{ book?.title }}</p>
+    <p>Availability: {{ book?.availability ? 'Available' : 'On Loan' }}</p>
+    <button (click)="loanBook()" [disabled]="!userId || !book || !book.availability">Loan Book</button>
+    <button (click)="returnBook()" [disabled]="!book || book.availability">Return Book</button>
+</div>
+<!-- <button *ngIf="book.availability"(click)="loanBook()">Loan Book</button>
+<button *ngIf="!book.availability" (click)="returnBook()">Return Book</button> -->
